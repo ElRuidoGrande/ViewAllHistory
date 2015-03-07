@@ -1,4 +1,0 @@
-C:\Users\cunniray\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\HP\ViewAllHistory\1.0\\ViewAllHistory.dll
-C:\Users\cunniray\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\HP\ViewAllHistory\1.0\\ViewAllHistory.pkgdef
-C:\Users\cunniray\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\HP\ViewAllHistory\1.0\\extension.vsixmanifest
-C:\Users\cunniray\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\HP\ViewAllHistory\1.0\\ViewAllHistory.pdb
