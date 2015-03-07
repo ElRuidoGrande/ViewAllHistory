@@ -1,0 +1,1 @@
+This extension will add the "View All History" command to the context menu of the Source Control Explorer window.  It will open a window that will have a listing of all changes for a file across branches.
