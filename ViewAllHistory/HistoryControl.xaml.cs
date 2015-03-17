@@ -106,7 +106,7 @@ namespace TFSExtensions.ViewAllHistory
 
         public List<BranchObject> GetBranches(Workspace workspace, string projectName)
         {
-            var rootBranches =  workspace.VersionControlServer.QueryRootBranchObjects(RecursionType.OneLevel);
+            var rootBranches =  workspace.VersionControlServer.QueryRootBranchObjects(RecursionType.Full);
 
             return rootBranches.Where(b => b.Properties.RootItem.Item.Contains(projectName)).ToList();
         }
@@ -156,24 +156,6 @@ namespace TFSExtensions.ViewAllHistory
                             ChangesetDate = result.CreationDate,
                             Committer = result.Committer
                         }));
-                    }
-
-                    foreach (var child in branch.ChildBranches)
-                    {
-                        string childPath = GetNewPath(child, this.InitialPath);
-                        var childResults = GetChangesets(this.Workspace, childPath);
-
-                        if (childResults != null && childResults.Any())
-                        {
-                            childResults.ToList().ForEach(result => results.Add(new ResultModel()
-                            {
-                                Branch = child.Item,
-                                ChangesetId = result.ChangesetId,
-                                Note = result.Comment,
-                                ChangesetDate = result.CreationDate,
-                                Committer = result.Committer
-                            }));
-                        }
                     }
 
                 }
