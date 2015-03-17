@@ -73,6 +73,11 @@ namespace TFSExtensions.ViewAllHistory
                 CommandID menuCommandID = new CommandID(GuidList.guidViewAllHistoryCmdSet, (int)PkgCmdIDList.onViewAllHistory);
                 MenuCommand menuItem = new MenuCommand(MenuItemCallback, menuCommandID );
                 mcs.AddCommand( menuItem );
+
+                CommandID solutionExplorerCommandID = new CommandID(GuidList.guidViewAllHistoryCmdSet_SolutionExplorer, (int)PkgCmdIDList.onViewAllHistory);
+                MenuCommand solutionExplorerMenuItem = new MenuCommand(MenuItemCallback, solutionExplorerCommandID);
+                mcs.AddCommand(solutionExplorerMenuItem);
+
             }
         }
         #endregion
@@ -83,17 +88,42 @@ namespace TFSExtensions.ViewAllHistory
         /// the OleMenuCommandService service and the MenuCommand class.
         /// </summary>
         private void MenuItemCallback(object sender, EventArgs e)
-        {            
+        {
+            MenuCommand command = sender as MenuCommand;
+
+            if (command == null)
+                return;
+
             EnvDTE.DTE app = (EnvDTE.DTE)GetService(typeof(SDTE));
+                        
             VersionControlExt sourceControlExt;
 
             sourceControlExt = app.GetObject("Microsoft.VisualStudio.TeamFoundation.VersionControl.VersionControlExt") as VersionControlExt;
 
             string selectedItems = "";
-            foreach (var item in sourceControlExt.Explorer.SelectedItems)
+
+            if (command.CommandID.Guid == GuidList.guidViewAllHistoryCmdSet_SolutionExplorer)
             {
-                selectedItems += item.SourceServerPath;
-                break;
+                var item = app.ActiveWindow.DTE.SelectedItems.Item(1);
+
+                for (int i = 1; i < item.ProjectItem.Properties.Count; i++)
+                {
+                    var property = item.ProjectItem.Properties.Item(i);
+
+                    if (property.Name == "LocalPath")
+                    {
+                        string localPath = app.ActiveWindow.DTE.SelectedItems.Item(1).ProjectItem.Properties.Item(i).Value.ToString();
+                        selectedItems = sourceControlExt.Explorer.Workspace.GetServerItemForLocalItem(localPath);
+                    }
+                }
+            }
+            else
+            {
+                foreach (var item in sourceControlExt.Explorer.SelectedItems)
+                {
+                    selectedItems += item.SourceServerPath;
+                    break;
+                }
             }
 
 

@@ -44,8 +44,30 @@
       <Group guid="guidViewAllHistoryCmdSet" id="MyMenuGroup" priority="0x0600">
         <Parent guid="guidTE_TeamExplorerCmdSet" id="IDM_SourceControlExplorerMS"/>
       </Group>
+      
+      <Group guid="guidViewAllHistoryCmdSet_SolutionExplorer" id="MyMenuGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_ITEMNODE"/>
+      </Group>
 
+      <Group guid="guidViewAllHistoryCmdSet_SolutionExplorer" id="MyMenuGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_PROJNODE"/>
+      </Group>    
 
+      <Group guid="guidViewAllHistoryCmdSet_SolutionExplorer" id="MyMenuGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_FOLDERNODE"/>
+      </Group>        
+
+      <Group guid="guidViewAllHistoryCmdSet_SolutionExplorer" id="MyMenuGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_WEBREFFOLDER"/>
+      </Group>            
+
+      <Group guid="guidViewAllHistoryCmdSet_SolutionExplorer" id="MyMenuGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_REFERENCEROOT"/>
+      </Group>                
+      
+      <Group guid="guidViewAllHistoryCmdSet_SolutionExplorer" id="MyMenuGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_REFERENCE"/>
+      </Group>                    
     </Groups>
     
     <!--Buttons section. -->
@@ -68,7 +90,13 @@
         </Strings>
       </Button>
 
-
+      <Button guid="guidViewAllHistoryCmdSet_SolutionExplorer" id="onViewAllHistory" priority="0x0100" type="Button">
+        <Parent guid="guidViewAllHistoryCmdSet_SolutionExplorer" id="MyMenuGroup" />
+        <Icon guid="guidImages" id="bmpPic1" />
+        <Strings>
+          <ButtonText>View All History</ButtonText>
+        </Strings>
+      </Button>
 
     </Buttons>
    
@@ -102,6 +130,14 @@
       <IDSymbol name="grpBranchToolMainMenu" value="0x1100" />
     </GuidSymbol>
     
+    <GuidSymbol name="guidViewAllHistoryCmdSet_SolutionExplorer" value="{26cd0820-4db6-46a9-b26a-05f08fdc84f9}">
+
+      <IDSymbol name="MyMenuGroup" value="0x1020" />
+      <IDSymbol name="onViewAllHistory" value="0x0100" />
+      <IDSymbol name="grpSCEMainMenu" value="0x1020" />
+      <IDSymbol name="grpBranchToolMainMenu" value="0x1100" />
+    </GuidSymbol>    
+    
     
     
     <GuidSymbol name="guidImages" value="{3ac8ba1e-f7d7-4188-ab67-5fda7e266db0}" >
@@ -114,8 +150,10 @@
     </GuidSymbol>
 
     <GuidSymbol name="guidTE_TeamExplorerCmdSet" value="{FFE1131C-8EA1-4D05-9728-34AD4611BDA9}">
-      <IDSymbol name="IDM_SourceControlExplorerMS" value="4113" />
+      <IDSymbol name="IDM_SourceControlExplorerMS" value="4113" />     
     </GuidSymbol>
+ 
+
   </Symbols>
 
 </CommandTable>

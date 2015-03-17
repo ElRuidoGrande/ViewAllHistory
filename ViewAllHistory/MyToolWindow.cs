@@ -49,6 +49,7 @@ namespace TFSExtensions.ViewAllHistory
 
         public void NewSelection(DTE application, Workspace workspace, string selection)
         {
+            this.Caption = string.Format("{0} - {1}", Resources.ToolWindowTitle, selection);
             (this.Content as HistoryControl).DisplayHistory(application, workspace, selection);
         }
     }
